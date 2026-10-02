@@ -1,9 +1,11 @@
-(function (window) {
-    const Arc = {
-        init() {
-            console.log("Hi");
-        }
-    };
+import Component from "./components/Component.js";
 
-    window.Arc = Arc;
-})(window);
+const Arc = {
+    Component,
+
+    init() {
+        console.log("Hi");
+    }
+};
+
+export default Arc;
