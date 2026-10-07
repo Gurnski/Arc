@@ -1,50 +1,74 @@
 import Component from "./components/Component.js";
+import Text from "./components/Text.js";
 
 const Arc = {
-    Component,
+Component,
+Text,
 
-    meta(title, description) {
-        const pageTitle = title || "Arc Framework";
-        const metaDescription = description || "Arc is a lightweight JavaScript framework for building web applications.";
-        const metaTags = "<meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">"
+text(content, options = {}) {
+    const element = document.createElement(options.tag || "p");
 
-        document.title = pageTitle;
-        document.querySelector('meta[name="description"]').setAttribute('content', metaDescription);
-        document.querySelector('head').insertAdjacentHTML('beforeend', metaTags);
+    element.textContent = content;
 
-        return {
-            title: pageTitle,
-            description: metaDescription,
-            tags: metaTags,
-        };
-    },
+    if (options.variant === "title") {
+        element.style.fontSize = "2.5rem";
+        element.style.fontWeight = "700";
+        element.style.letterSpacing = "-0.03em";
+        element.style.lineHeight = "1.1";
+    }
 
-    async updatePage()
-    {
-        try{
-            // Update the page size
-            const pageHeight = document.body.clientHeight;
-            const pageWidth = document.body.clientWidth;
-            const pageSize = { height: pageHeight, width: pageWidth };
-            console.log(pageSize);
+    return {
+        element,
+
+        mount(parent) {
+            parent.appendChild(element);
+            return this;
         }
-        catch (error){
-            console.error("Error updating page size:", error);
-        }
-    },
+    };
+},
 
-    //Initialise the framework
-    init() {
-        try{
-            this.meta("Arc Framework", "A framework for building single page web applications.");
-            console.log("Arc framework initialised.");
-            this.updatePage();
+meta(title, description) {
+    const pageTitle = title || "Arc Framework";
+    const metaDescription = description || "Arc is a lightweight JavaScript framework for building web applications.";
+    const metaTags = "<meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">"
 
-        }
-        catch (error) {
-            console.error("Error initializing Arc framework:", error);
-        }
-    },
+    document.title = pageTitle;
+    document.querySelector('meta[name="description"]').setAttribute('content', metaDescription);
+    document.querySelector('head').insertAdjacentHTML('beforeend', metaTags);
+
+    return {
+        title: pageTitle,
+        description: metaDescription,
+        tags: metaTags,
+    };
+},
+
+async updatePage()
+{
+    try{
+        // Update the page size
+        const pageHeight = document.body.clientHeight;
+        const pageWidth = document.body.clientWidth;
+        const pageSize = { height: pageHeight, width: pageWidth };
+        console.log(pageSize);
+    }
+    catch (error){
+        console.error("Error updating page size:", error);
+    }
+},
+
+//Initialise the framework
+init() {
+    try{
+        this.meta("Arc Framework", "A framework for building single page web applications.");
+        console.log("Arc framework initialised.");
+        this.updatePage();
+
+    }
+    catch (error) {
+        console.error("Error initializing Arc framework:", error);
+    }
+},
 
 
 };
