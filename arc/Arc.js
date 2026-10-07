@@ -19,7 +19,6 @@ const Arc = {
         };
     },
 
-
     async updatePage()
     {
         try{
