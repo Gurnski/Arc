@@ -8,6 +8,10 @@ const Arc = {
         const metaDescription = description || "Arc is a lightweight JavaScript framework for building web applications.";
         const metaTags = "<meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">"
 
+        document.title = pageTitle;
+        document.querySelector('meta[name="description"]').setAttribute('content', metaDescription);
+        document.querySelector('head').insertAdjacentHTML('beforeend', metaTags);
+
         return {
             title: pageTitle,
             description: metaDescription,
@@ -29,7 +33,6 @@ const Arc = {
             console.error("Error updating page size:", error);
         }
     },
-
 
     //Initialise the framework
     init() {

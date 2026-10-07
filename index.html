@@ -3,21 +3,16 @@
 <script type="module" src="script.js"></script>
 <script type="module" src="arc/Arc.js"></script>
 
-<script>
-    import Arc from "./arc/Arc.js";
-    // Pull meta data from Arc framework
-    document.title = Arc.meta().title;
-    document.querySelector('meta[name="description"]').setAttribute('content', Arc.meta().description);
-</script>
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Arc</title>
-    <meta name="description" content="<script> document.querySelector('meta[name=\"description\"]').setAttribute('content', Arc.description);</script>">
+    <meta name="description" content="<script> document.querySelector('meta[name=\"description\"]').setAttribute('content', Arc.description);</script>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div id="app"></div>
+    <div id="app">
+        <h1>Welcome to Arc</h1>
+    </div>
 </body>
 </html>
