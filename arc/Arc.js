@@ -5,7 +5,6 @@ const Arc = {
 Component,
 Text,
 Image,
-Page,
 
 text(content, options = {}) {
     const element = document.createElement(options.tag || "p");
