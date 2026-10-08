@@ -4,6 +4,7 @@ import Text from "./components/Text.js";
 const Arc = {
 Component,
 Text,
+Image,
 
 text(content, options = {}) {
     const element = document.createElement(options.tag || "p");
@@ -50,7 +51,7 @@ async updatePage()
         const pageHeight = document.body.clientHeight;
         const pageWidth = document.body.clientWidth;
         const pageSize = { height: pageHeight, width: pageWidth };
-        console.log(pageSize);
+        console.log(`pageSize: {pageheight: ${pageHeight}, pageWidth: ${pageWidth}}`);
     }
     catch (error){
         console.error("Error updating page size:", error);
