@@ -5,6 +5,7 @@ const Arc = {
 Component,
 Text,
 Image,
+Page,
 
 text(content, options = {}) {
     const element = document.createElement(options.tag || "p");
@@ -16,6 +17,12 @@ text(content, options = {}) {
         element.style.fontWeight = "700";
         element.style.letterSpacing = "-0.03em";
         element.style.lineHeight = "1.1";
+    }
+    if (options.variant === "subtitle") {
+        element.style.fontSize = "1.5rem";
+        element.style.fontWeight = "500";
+        element.style.letterSpacing = "-0.02em";
+        element.style.lineHeight = "1.3";
     }
 
     return {
@@ -44,21 +51,7 @@ meta(title, description) {
     };
 },
 
-async updatePage()
-{
-    try{
-        // Update the page size
-        const pageHeight = document.body.clientHeight;
-        const pageWidth = document.body.clientWidth;
-        const pageSize = { height: pageHeight, width: pageWidth };
-        console.log(`pageSize: {pageheight: ${pageHeight}, pageWidth: ${pageWidth}}`);
-    }
-    catch (error){
-        console.error("Error updating page size:", error);
-    }
-},
-
-//Initialise the framework
+// Initialises the framework, loads the main page and sets up the environment for the user.
 init() {
     try{
         this.meta("Arc Framework", "A framework for building single page web applications.");
