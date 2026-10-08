@@ -13,4 +13,13 @@ export default class Component {
         parent.appendChild(this.element);
         return this;
     }
+
+    // Removes the component from the page. Components that set up listeners or timers
+    // should override this to clean them up, then call super.unmount().
+    unmount() {
+        if (this.element) {
+            this.element.remove();
+            this.element = null;
+        }
+    }
 }

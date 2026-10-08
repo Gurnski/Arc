@@ -2,12 +2,15 @@ import Component from "./components/Component.js";
 import Text from "./components/Text.js";
 import Image from "./components/Image.js";
 import Page from "./components/Page.js";
+import Meta from "./core/Meta.js";
+import PageLoader from "./core/PageLoader.js";
 
 const Arc = {
 Component,
 Text,
-Image, 
+Image,
 Page,
+Meta,
 
 text(content, options = {}) {
     const element = document.createElement(options.tag || "p");
@@ -37,32 +40,29 @@ text(content, options = {}) {
     };
 },
 
-meta(title, description) {
-    const pageTitle = title || "Arc Framework";
-    const metaDescription = description || "Arc is a lightweight JavaScript framework for building web applications.";
-    const metaTags = "<meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">"
-    const favicon = "<link rel=\"icon\" href=\"C:/Users/danie/Documents/Arc/arc/favicon.ico\" type=\"image/x-icon\">";
-    const metaKeywords = "<meta name=\"keywords\" content=\"arc, framework, javascript, web, applications\">";
-
-    document.title = pageTitle;
-    document.head.insertAdjacentHTML('beforeend', metaTags);
-    document.head.insertAdjacentHTML('beforeend', favicon);
-    document.head.insertAdjacentHTML('beforeend', metaKeywords);
-    document.description = metaDescription;
-
-    return {
-        title: pageTitle,
-        description: metaDescription,
-        tags: metaTags,
-        keywords: metaKeywords
-    };
+// Loads a page from the pages folder (e.g. "about" loads pages/about.js) and shows it.
+loadPage(name) {
+    return PageLoader.loadPage(name);
 },
 
 // Initialises the framework, loads the main page and sets up the environment for the user.
-init() {
+// root is the element pages render into, pages is the folder the page files live in.
+init({ root = "#app", pages = "./pages/" } = {}) {
     try
     {
-        this.meta("Arc Framework", "A framework for building single page web applications.");
+        const siteMeta = {
+            title: "Arc Framework",
+            description: "A framework for building single page web applications."
+        };
+
+        Meta.set({
+            ...siteMeta,
+            keywords: "arc, framework, javascript, web, applications",
+            // Resolved relative to this file, so it works wherever the project is served from
+            favicon: new URL("./favicon.ico", import.meta.url).href
+        });
+
+        PageLoader.setup(root, pages, siteMeta);
         console.log("Arc framework initialised.");
 
     }
