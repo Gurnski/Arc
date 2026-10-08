@@ -1,10 +1,15 @@
 import Component from "./components/Component.js";
 import Text from "./components/Text.js";
+import Image from "./components/Image.js";
+import Page from "./components/Page.js";
 
 const Arc = {
 Component,
 Text,
-Image,
+Image, 
+Page,
+
+pageFunctions = Page,
 
 text(content, options = {}) {
     const element = document.createElement(options.tag || "p");
@@ -53,17 +58,15 @@ meta(title, description) {
 // Initialises the framework, loads the main page and sets up the environment for the user.
 init() {
     try{
+        pageFunctions.updatePage(); // Update the page size on load
         this.meta("Arc Framework", "A framework for building single page web applications.");
         console.log("Arc framework initialised.");
-        this.updatePage();
 
     }
     catch (error) {
-        console.error("Error initializing Arc framework:", error);
+        console.error("Error initialising Arc framework:", error);
     }
 },
-
-
 };
 
 export default Arc;

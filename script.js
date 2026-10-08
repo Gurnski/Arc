@@ -12,3 +12,5 @@ Arc.text("Arc is a lightweight JavaScript framework for building web application
     tag: "p",
     variant: "subtitle"
 }).mount(document.querySelector("#app"));
+
+Arc.Page.updatePage(); // Update the page size on load

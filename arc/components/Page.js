@@ -1,6 +1,8 @@
-export default class Page extends Component {
-    
-async updatePage()
+import Component from "./Component.js";
+
+export default class Page {
+
+updatePage()
 {
 try{
     // Update the page size
