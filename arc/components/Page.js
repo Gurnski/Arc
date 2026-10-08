@@ -2,6 +2,18 @@ import Component from "./Component.js";
 
 export default class Page {
 
+createDesign(){
+
+}
+
+saveDesign(fileLocation){
+
+}
+
+loadDesign(fileLocation){
+
+}
+
 updatePage()
 {
 try{
@@ -24,9 +36,14 @@ clearPage(){
 loadPage(){
     clearPage();
 
+    var favicon = import.meta("favicon", "C:/Users/danie/Documents/Arc/arc/favicon.ico");
+    var title = import.meta("title", "Arc Framework");
+    var description = import.meta("description", "Arc is a lightweight JavaScript framework for building web applications.");
+    var metaTags = import.meta("metaTags", "<meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">");
+
 }
 
-createPage(){
+createPage(name, description, assets, components){
 
 }
 }

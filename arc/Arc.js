@@ -9,8 +9,6 @@ Text,
 Image, 
 Page,
 
-pageFunctions = Page,
-
 text(content, options = {}) {
     const element = document.createElement(options.tag || "p");
 
@@ -43,22 +41,27 @@ meta(title, description) {
     const pageTitle = title || "Arc Framework";
     const metaDescription = description || "Arc is a lightweight JavaScript framework for building web applications.";
     const metaTags = "<meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">"
+    const favicon = "<link rel=\"icon\" href=\"C:/Users/danie/Documents/Arc/arc/favicon.ico\" type=\"image/x-icon\">";
+    const metaKeywords = "<meta name=\"keywords\" content=\"arc, framework, javascript, web, applications\">";
 
     document.title = pageTitle;
-    document.querySelector('meta[name="description"]').setAttribute('content', metaDescription);
-    document.querySelector('head').insertAdjacentHTML('beforeend', metaTags);
+    document.head.insertAdjacentHTML('beforeend', metaTags);
+    document.head.insertAdjacentHTML('beforeend', favicon);
+    document.head.insertAdjacentHTML('beforeend', metaKeywords);
+    document.description = metaDescription;
 
     return {
         title: pageTitle,
         description: metaDescription,
         tags: metaTags,
+        keywords: metaKeywords
     };
 },
 
 // Initialises the framework, loads the main page and sets up the environment for the user.
 init() {
-    try{
-        pageFunctions.updatePage(); // Update the page size on load
+    try
+    {
         this.meta("Arc Framework", "A framework for building single page web applications.");
         console.log("Arc framework initialised.");
 
