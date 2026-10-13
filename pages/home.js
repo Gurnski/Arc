@@ -5,7 +5,13 @@ export default class Home extends Arc.Page {
     static description = "A framework for building single page web applications.";
 
     render() {
+        const hero = document.createElement("hero");
         const page = document.createElement("main");
+
+        Arc.text("This is the hero", {
+            tag: "h1",
+            variant: "title"
+        }).mount(hero);
 
         Arc.text("Welcome to Arc", {
             tag: "h1",
