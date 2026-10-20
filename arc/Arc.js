@@ -36,8 +36,26 @@ text(content, options = {}) {
         element.style.lineHeight = "1.5";
         element.style.color = "#007BFF";
         element.style.textDecoration = "none";
+        element.style.cursor = "pointer";
         element.href = options.href || "#";
     }
+
+    if (options.variant === "pageLoadText") {
+        element.style.fontSize = "1rem";
+        element.style.fontWeight = "400";
+        element.style.letterSpacing = "-0.01em";
+        element.style.lineHeight = "1.5";
+        element.style.color = "#007BFF";
+        element.style.textDecoration = "none";
+        element.style.cursor = "pointer";
+
+        if (options.href) {
+            element.addEventListener("click", (event) => {
+                event.preventDefault();
+                Arc.loadPage(options.href);
+            });
+        }
+    }   
 
     return {
         element,
@@ -49,10 +67,6 @@ text(content, options = {}) {
     };
 },
 
-// Loads a page from the pages folder (e.g. "about" loads pages/about.js) and shows it.
-loadPage(name) {
-    return PageLoader.loadPage(name);
-},
 
 // Initialises the framework, loads the main page and sets up the environment for the user.
 // root is the element pages render into, pages is the folder the page files live in.

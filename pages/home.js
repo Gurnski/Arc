@@ -27,8 +27,8 @@ export default class Home extends Arc.Page {
 
         Arc.text("Learn more about Arc", {
             tag: "a",
-            variant: "link",
-            href: "/about"
+            variant: "pageLoadText",
+            href: "about"
         }).mount(page);
 
 
