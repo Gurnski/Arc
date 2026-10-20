@@ -1,0 +1,431 @@
+/* Arc's own stylesheet
+   Tokens, element defaults, page transitions and the styles for Arc's basic components
+   (layout, Section, Button, Badge, Text variants). Arc.init() loads it before the site's
+   stylesheets, so a site can override any token or rule here. Interactive components
+   (Orbit, Card, Hero) load their own stylesheets from css/elements/.
+   Colours are taken from the logo's purples. */
+
+/* ---------- Tokens ---------- */
+
+:root {
+    color-scheme: dark;
+
+    /* Colour */
+    --arc-bg: #0a0912;
+    --arc-surface: #13111d;
+    --arc-surface-raised: #1b1828;
+    --arc-line: rgba(255, 255, 255, 0.08);
+    --arc-line-strong: rgba(255, 255, 255, 0.16);
+
+    --arc-text: #f3f1fa;
+    --arc-text-muted: #a29db8;
+    --arc-text-faint: #6c6784;
+
+    --arc-violet-300: #c4b0ff;
+    --arc-violet-400: #a585ff;
+    --arc-violet-500: #8b5cf6;
+    --arc-violet-600: #6d3fe0;
+    --arc-violet-900: #2a1166;
+
+    --arc-accent: var(--arc-violet-500);
+    --arc-accent-hover: var(--arc-violet-400);
+    --arc-accent-glow: rgba(139, 92, 246, 0.35);
+    --arc-gradient: linear-gradient(135deg, var(--arc-violet-300) 0%, var(--arc-violet-500) 55%, var(--arc-violet-600) 100%);
+
+    /* Type */
+    --arc-font-sans: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+    --arc-font-mono: ui-monospace, "JetBrains Mono", "Cascadia Code", Consolas, monospace;
+
+    /* Fluid sizes: smallest on phones, largest on wide screens, smooth in between */
+    --arc-step--1: clamp(0.83rem, 0.8rem + 0.15vw, 0.9rem);
+    --arc-step-0: clamp(1rem, 0.96rem + 0.2vw, 1.125rem);
+    --arc-step-1: clamp(1.2rem, 1.1rem + 0.5vw, 1.5rem);
+    --arc-step-2: clamp(1.5rem, 1.3rem + 1vw, 2.1rem);
+    --arc-step-3: clamp(2rem, 1.6rem + 2vw, 3.2rem);
+    --arc-step-4: clamp(2.5rem, 1.8rem + 3.5vw, 4.5rem);
+
+    /* Space */
+    --arc-space-2xs: 0.25rem;
+    --arc-space-xs: 0.5rem;
+    --arc-space-s: 0.75rem;
+    --arc-space-m: 1rem;
+    --arc-space-l: 1.5rem;
+    --arc-space-xl: 2.5rem;
+    --arc-space-2xl: 4rem;
+    --arc-space-3xl: clamp(4rem, 3rem + 5vw, 8rem);
+
+    /* Shape and motion */
+    --arc-radius-s: 8px;
+    --arc-radius-m: 14px;
+    --arc-radius-l: 22px;
+    --arc-radius-full: 999px;
+    --arc-shadow: 0 1px 0 rgba(255, 255, 255, 0.04) inset, 0 20px 40px -16px rgba(0, 0, 0, 0.8);
+    --arc-ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+    --arc-duration: 0.35s;
+
+    --arc-content-width: 1120px;
+    --arc-text-width: 65ch;
+}
+
+/* ---------- Reset ---------- */
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    -webkit-text-size-adjust: 100%;
+    scroll-behavior: smooth;
+}
+
+body {
+    min-height: 100vh;
+    min-height: 100dvh;
+    background: var(--arc-bg);
+    color: var(--arc-text);
+    font-family: var(--arc-font-sans);
+    font-size: var(--arc-step-0);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+}
+
+img,
+svg,
+video,
+canvas {
+    display: block;
+    max-width: 100%;
+}
+
+input,
+button,
+textarea,
+select {
+    font: inherit;
+    color: inherit;
+}
+
+/* ---------- Text ---------- */
+
+h1,
+h2,
+h3,
+h4 {
+    line-height: 1.15;
+    letter-spacing: -0.025em;
+    font-weight: 700;
+    text-wrap: balance;
+}
+
+h1 { font-size: var(--arc-step-4); }
+h2 { font-size: var(--arc-step-3); }
+h3 { font-size: var(--arc-step-2); }
+h4 { font-size: var(--arc-step-1); }
+
+p {
+    max-width: var(--arc-text-width);
+    text-wrap: pretty;
+}
+
+a {
+    color: var(--arc-accent-hover);
+    text-decoration: underline;
+    text-decoration-color: transparent;
+    text-underline-offset: 0.2em;
+    transition: color var(--arc-duration) ease, text-decoration-color var(--arc-duration) ease;
+}
+
+a:hover {
+    color: var(--arc-violet-300);
+    text-decoration-color: currentColor;
+}
+
+strong { font-weight: 650; }
+
+small { font-size: var(--arc-step--1); }
+
+code,
+kbd,
+pre {
+    font-family: var(--arc-font-mono);
+    font-size: 0.9em;
+}
+
+:not(pre) > code {
+    padding: 0.15em 0.4em;
+    border-radius: 6px;
+    background: rgba(139, 92, 246, 0.12);
+    color: var(--arc-violet-300);
+}
+
+pre {
+    padding: var(--arc-space-l);
+    overflow-x: auto;
+    border-radius: var(--arc-radius-m);
+    border: 1px solid var(--arc-line);
+    background: var(--arc-surface);
+    line-height: 1.7;
+    tab-size: 4;
+}
+
+kbd {
+    padding: 0.1em 0.45em;
+    border-radius: 6px;
+    border: 1px solid var(--arc-line-strong);
+    border-bottom-width: 2px;
+    background: var(--arc-surface-raised);
+}
+
+hr {
+    border: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--arc-line-strong), transparent);
+}
+
+::selection {
+    background: var(--arc-violet-600);
+    color: #fff;
+}
+
+/* ---------- Arc.text() variants ---------- */
+
+.arc-text-title {
+    font-size: var(--arc-step-4);
+    font-weight: 700;
+    letter-spacing: -0.03em;
+    line-height: 1.1;
+}
+
+.arc-text-subtitle {
+    font-size: var(--arc-step-1);
+    font-weight: 500;
+    letter-spacing: -0.01em;
+    line-height: 1.4;
+    color: var(--arc-text-muted);
+}
+
+.arc-text-link,
+.arc-text-pageLoadText {
+    cursor: pointer;
+}
+
+/* ---------- Focus ---------- */
+
+/* Only shown for keyboard users, as a soft violet ring */
+:focus-visible {
+    outline: 2px solid var(--arc-violet-400);
+    outline-offset: 3px;
+    border-radius: 4px;
+}
+
+/* PageLoader focuses #app after a page change so screen readers notice; no ring needed there */
+#app:focus {
+    outline: none;
+}
+
+/* ---------- Page entrance ---------- */
+
+/* Every page PageLoader swaps in fades and rises into place. No JS needed: the
+   animation runs whenever a new page element is added to #app. */
+#app > * {
+    /* backwards, not both: a transform left on the page after the animation would stop
+       position: fixed working inside it */
+    animation: arc-page-enter 0.6s var(--arc-ease-out) backwards;
+}
+
+@keyframes arc-page-enter {
+    from {
+        opacity: 0;
+        transform: translateY(12px);
+    }
+}
+
+/* ---------- Page transitions ---------- */
+
+/* PageLoader swaps pages inside document.startViewTransition(). The browser takes a picture
+   of the old screen, and here it blurs and fades out while the new one fades in. The new
+   page's entrance (above) still plays inside it, which adds the rise.
+   Both halves take the same time, so the background, which is the same on both, stays steady.
+   Browsers without View Transitions just get the entrance. */
+::view-transition-old(root),
+::view-transition-new(root) {
+    animation-duration: 0.45s;
+    animation-timing-function: var(--arc-ease-out);
+}
+
+::view-transition-old(root) {
+    animation-name: arc-page-leave;
+}
+
+::view-transition-new(root) {
+    animation-name: arc-page-arrive;
+}
+
+@keyframes arc-page-leave {
+    to {
+        opacity: 0;
+        filter: blur(8px);
+    }
+}
+
+@keyframes arc-page-arrive {
+    from {
+        opacity: 0;
+    }
+}
+
+/* ---------- Layout helpers ---------- */
+
+/* Centred column with side padding that shrinks on small screens */
+.arc-container {
+    width: min(100% - 2 * clamp(1rem, 4vw, 2rem), var(--arc-content-width));
+    margin-inline: auto;
+}
+
+.arc-section {
+    padding-block: var(--arc-space-3xl);
+}
+
+/* Solid panel with a rounded top. Placed after an Arc.Hero, it slides up over it. */
+.arc-section--raised {
+    position: relative;
+    z-index: 1;
+    min-height: 100vh;
+    min-height: 100dvh;
+    border-radius: 36px 36px 0 0;
+    background: var(--arc-surface);
+    box-shadow: 0 -40px 80px -30px rgba(0, 0, 0, 0.9);
+}
+
+/* A violet line of light along the top edge */
+.arc-section--raised::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 10%;
+    right: 10%;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--arc-violet-400), transparent);
+}
+
+/* Children stacked with even gaps. Change the gap with --arc-gap. */
+.arc-stack {
+    display: flex;
+    flex-direction: column;
+    gap: var(--arc-gap, var(--arc-space-m));
+}
+
+/* Children in a row that wraps onto new lines when it runs out of room */
+.arc-cluster {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: var(--arc-gap, var(--arc-space-s));
+}
+
+/* As many columns as fit, each at least --arc-min wide */
+.arc-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, var(--arc-min, 260px)), 1fr));
+    gap: var(--arc-gap, var(--arc-space-l));
+}
+
+.arc-center {
+    text-align: center;
+    align-items: center;
+    margin-inline: auto;
+}
+
+/* ---------- Components ---------- */
+
+.arc-button {
+    display: inline-flex;
+    width: fit-content;
+    align-items: center;
+    gap: var(--arc-space-xs);
+    padding: 0.7em 1.3em;
+    border: 1px solid transparent;
+    border-radius: var(--arc-radius-full);
+    background: var(--arc-gradient);
+    color: #fff;
+    font-weight: 600;
+    font-size: var(--arc-step--1);
+    letter-spacing: 0.01em;
+    text-decoration: none;
+    cursor: pointer;
+    box-shadow: 0 0 0 0 var(--arc-accent-glow), 0 1px 0 rgba(255, 255, 255, 0.25) inset;
+    transition: transform var(--arc-duration) var(--arc-ease-out), box-shadow var(--arc-duration) ease;
+}
+
+.arc-button:hover {
+    color: #fff;
+    transform: translateY(-1px);
+    box-shadow: 0 8px 28px -6px var(--arc-accent-glow), 0 1px 0 rgba(255, 255, 255, 0.25) inset;
+}
+
+.arc-button:active {
+    transform: translateY(0) scale(0.98);
+}
+
+.arc-button--ghost {
+    background: rgba(255, 255, 255, 0.04);
+    border-color: var(--arc-line-strong);
+    color: var(--arc-text);
+    box-shadow: none;
+}
+
+.arc-button--ghost:hover {
+    background: rgba(255, 255, 255, 0.08);
+    box-shadow: none;
+}
+
+/* Small pill label, e.g. "v0.1" or "New" */
+.arc-badge {
+    display: inline-flex;
+    width: fit-content;
+    align-items: center;
+    gap: var(--arc-space-2xs);
+    padding: 0.25em 0.75em;
+    border-radius: var(--arc-radius-full);
+    border: 1px solid rgba(139, 92, 246, 0.35);
+    background: rgba(139, 92, 246, 0.1);
+    color: var(--arc-violet-300);
+    font-size: var(--arc-step--1);
+    font-weight: 500;
+}
+
+/* Text filled with the logo gradient, for a word or two in a heading */
+.arc-gradient-text {
+    background: var(--arc-gradient);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}
+
+.arc-muted {
+    color: var(--arc-text-muted);
+}
+
+/* ---------- Scrollbar ---------- */
+
+html {
+    scrollbar-color: var(--arc-surface-raised) transparent;
+}
+
+/* ---------- Reduced motion ---------- */
+
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+}

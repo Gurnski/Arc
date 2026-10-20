@@ -1,7 +1,5 @@
 import Component from "./Component.js";
 
-// Uses document.createElement("img") rather than `new Image()`, because inside this
-// file `Image` refers to this class, not the browser's built-in image element.
 export default class Image extends Component {
     constructor(src, options = {}) {
         super(options);

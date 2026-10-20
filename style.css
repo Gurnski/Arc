@@ -1,12 +1,19 @@
-*,
-*::before,
-*::after {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-}
+/* The site's own stylesheet, shared by every page. Loaded by Arc.init() in script.js, after
+   Arc's arc.css, so anything here wins. Change an Arc token (e.g. --arc-accent) in :root to
+   restyle every component at once. */
 
-body {
-    font-family: system-ui, sans-serif;
-    line-height: 1.5;
+/* Ambient background: two soft purple glows and a faint dot grid that fades out
+   towards the edges. Fixed, so it stays put while the page scrolls. */
+body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+    background:
+        radial-gradient(60% 50% at 50% -10%, rgba(139, 92, 246, 0.22), transparent 70%),
+        radial-gradient(40% 40% at 90% 110%, rgba(109, 63, 224, 0.14), transparent 70%),
+        radial-gradient(rgba(255, 255, 255, 0.07) 1px, transparent 1px) 0 0 / 28px 28px;
+    -webkit-mask-image: radial-gradient(ellipse 80% 70% at 50% 30%, #000 40%, transparent 100%);
+    mask-image: radial-gradient(ellipse 80% 70% at 50% 30%, #000 40%, transparent 100%);
 }

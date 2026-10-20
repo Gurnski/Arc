@@ -1,0 +1,71 @@
+/* Styles for Arc.Hero. hero.js sets --cover from 0 (fully visible) to 1 (covered). */
+.arc-hero {
+  min-height: 100vh;
+  min-height: 100dvh;
+  display: grid;
+  /* Content centred in the space above, scroll hint underneath it */
+  grid-template-rows: 1fr auto;
+  place-items: center;
+  gap: var(--arc-space-l, 1.5rem);
+  padding-block: var(--arc-space-xl, 2.5rem) var(--arc-space-l, 1.5rem);
+  overflow: hidden;
+}
+
+.arc-hero-inner {
+  --arc-gap: var(--arc-space-l, 1.5rem);
+}
+
+/* Stays pinned to the top while the next section scrolls up and covers it */
+.arc-hero--cover {
+  position: sticky;
+  top: 0;
+}
+
+.arc-hero--cover .arc-hero-inner {
+  transform: scale(calc(1 - var(--cover, 0) * 0.08));
+  opacity: calc(1 - var(--cover, 0) * 0.7);
+  filter: blur(calc(var(--cover, 0) * 6px));
+  transform-origin: 50% 40%;
+  will-change: transform, opacity;
+}
+
+.arc-hero-hint {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--arc-space-xs, 0.5rem);
+  color: var(--arc-text-faint, #6c6784);
+  font-size: 0.75rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  opacity: calc(1 - var(--cover, 0) * 4);
+}
+
+/* A short line under the word, with a light that runs down it */
+.arc-hero-hint::after {
+  content: "";
+  width: 1px;
+  height: 36px;
+  background:
+    linear-gradient(var(--arc-violet-400, #a585ff), transparent) 0 -36px / 100% 36px no-repeat,
+    var(--arc-line-strong, rgba(255, 255, 255, 0.16));
+  animation: arc-hero-hint 2s var(--arc-ease-out, ease-out) infinite;
+}
+
+@keyframes arc-hero-hint {
+  to { background-position: 0 36px, 0 0; }
+}
+
+/* On short screens the content may not fit, so let it scroll normally instead of pinning it */
+@media (max-height: 640px) {
+  .arc-hero--cover {
+    position: relative;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .arc-hero--cover .arc-hero-inner {
+    transform: none;
+    filter: none;
+  }
+}

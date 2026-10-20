@@ -2,62 +2,65 @@ import Component from "./components/Component.js";
 import Text from "./components/Text.js";
 import Image from "./components/Image.js";
 import Page from "./components/Page.js";
+import { Container, Stack, Cluster, Grid } from "./components/Layout.js";
+import Section from "./components/Section.js";
+import Button from "./components/Button.js";
+import Badge from "./components/Badge.js";
+import Icon from "./components/Icon.js";
 import Meta from "./core/Meta.js";
 import PageLoader from "./core/PageLoader.js";
 import Style from "./core/Style.js";
+import Orbit from "./components/js/elements/orbit.js";
+import Card from "./components/js/elements/card.js";
+import Hero from "./components/js/elements/hero.js";
 
 const Arc = {
 Component,
 Text,
 Image,
 Page,
+Container,
+Stack,
+Cluster,
+Grid,
+Section,
+Button,
+Badge,
+Icon,
 Meta,
 Style,
+Orbit,
+Card,
+Hero,
 
 text(content, options = {}) {
     const element = document.createElement(options.tag || "p");
 
     element.textContent = content;
 
-    if (options.variant === "title") {
-        element.style.fontSize = "2.5rem";
-        element.style.fontWeight = "700";
-        element.style.letterSpacing = "-0.03em";
-        element.style.lineHeight = "1.1";
+    // The look comes from the arc-text-* classes in style.css rather than inline styles,
+    // so a site's stylesheet can change it.
+    if (options.variant) {
+        element.classList.add(`arc-text-${options.variant}`);
     }
-    if (options.variant === "subtitle") {
-        element.style.fontSize = "1.5rem";
-        element.style.fontWeight = "500";
-        element.style.letterSpacing = "-0.02em";
-        element.style.lineHeight = "1.3";
+
+    if (options.className) {
+        element.classList.add(...options.className.split(" "));
     }
+
     if (options.variant === "link") {
-        element.style.fontSize = "1rem";
-        element.style.fontWeight = "400";
-        element.style.letterSpacing = "-0.01em";
-        element.style.lineHeight = "1.5";
-        element.style.color = "#007BFF";
-        element.style.textDecoration = "none";
-        element.style.cursor = "pointer";
         element.href = options.href || "#";
     }
 
-    if (options.variant === "pageLoadText") {
-        element.style.fontSize = "1rem";
-        element.style.fontWeight = "400";
-        element.style.letterSpacing = "-0.01em";
-        element.style.lineHeight = "1.5";
-        element.style.color = "#007BFF";
-        element.style.textDecoration = "none";
-        element.style.cursor = "pointer";
+    if (options.variant === "pageLoadText" && options.href) {
+        // An <a> needs an href to be reachable with the keyboard; the click handler stops it navigating.
+        element.href = `#${options.href}`;
 
-        if (options.href) {
-            element.addEventListener("click", (event) => {
-                event.preventDefault();
-                Arc.loadPage(options.href);
-            });
-        }
-    }   
+        element.addEventListener("click", (event) => {
+            event.preventDefault();
+            Arc.loadPage(options.href);
+        });
+    }
 
     return {
         element,
@@ -69,9 +72,15 @@ text(content, options = {}) {
     };
 },
 
+// Swaps the page in pages/<name>.js into the root element. See PageLoader.loadPage().
+loadPage(name) {
+    return PageLoader.loadPage(name);
+},
+
 // Initialises the framework, loads the main page and sets up the environment for the user.
-// root is the element pages render into, pages is the folder the page files live in.
-init({ root = "#app", pages = "./pages/" } = {}) {
+// root is the element pages render into, pages is the folder the page files live in, and
+// styles are the stylesheets every page shares.
+init({ root = "#app", pages = "./pages/", styles = [] } = {}) {
     try
     {
         const siteMeta = {
@@ -86,7 +95,9 @@ init({ root = "#app", pages = "./pages/" } = {}) {
             favicon: new URL("./favicon.ico", import.meta.url).href
         });
 
-        PageLoader.setup(root, pages, siteMeta);
+        // Arc's own stylesheet goes first, so the site's styles can override it
+        const arcStyles = new URL("./components/css/arc.css", import.meta.url).href;
+        PageLoader.setup(root, pages, siteMeta, [arcStyles, ...styles]);
         console.log("Arc framework initialised.");
 
     }
