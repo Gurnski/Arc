@@ -67,7 +67,6 @@ text(content, options = {}) {
     };
 },
 
-
 // Initialises the framework, loads the main page and sets up the environment for the user.
 // root is the element pages render into, pages is the folder the page files live in.
 init({ root = "#app", pages = "./pages/" } = {}) {
