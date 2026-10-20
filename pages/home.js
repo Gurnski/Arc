@@ -1,6 +1,14 @@
 import Arc from "../arc/Arc.js";
 
 export default class Home extends Arc.Page {
+    constructor() {
+        super();
+        this.loadStyleSheet();
+    }
+
+    loadStyleSheet() {
+        Arc.Style.loadStyleSheet("./styles/home.css");
+    }
     static title = "Arc Framework";
     static description = "A framework for building single page web applications.";
 

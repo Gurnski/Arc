@@ -6,6 +6,7 @@ export default class Style extends Component {
 
     }
 
+    //Replace currently loaded stylesheet live
     loadStyleSheet(href) {
         // Check if the stylesheet is already loaded
         const existingLink = document.querySelector(`link[href="${href}"]`);
