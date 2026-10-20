@@ -384,7 +384,7 @@ hr {
     box-shadow: none;
 }
 
-/* Small pill label, e.g. "v0.1" or "New" */
+/* Small pill label */
 .arc-badge {
     display: inline-flex;
     width: fit-content;

@@ -33,12 +33,13 @@ Orbit,
 Card,
 Hero,
 
+// Creates a text element with the given content and options, and returns an object with the element and a mount() method.
 text(content, options = {}) {
     const element = document.createElement(options.tag || "p");
 
     element.textContent = content;
 
-    // The look comes from the arc-text-* classes in style.css rather than inline styles,
+    // The look comes from the arc-text-* classes in arc/components/css/arc.css rather than inline styles,
     // so a site's stylesheet can change it.
     if (options.variant) {
         element.classList.add(`arc-text-${options.variant}`);
