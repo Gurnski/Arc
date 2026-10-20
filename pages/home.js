@@ -7,6 +7,8 @@ export default class Home extends Arc.Page {
     render() {
         const hero = document.createElement("hero");
         const page = document.createElement("main");
+        const header = document.querySelector("header");
+        const footer = document.querySelector("footer");
 
         Arc.text("This is the hero", {
             tag: "h1",
@@ -22,6 +24,13 @@ export default class Home extends Arc.Page {
             tag: "p",
             variant: "subtitle"
         }).mount(page);
+
+        Arc.text("Learn more about Arc", {
+            tag: "a",
+            variant: "link",
+            href: "/about"
+        }).mount(page);
+
 
         return page;
     }

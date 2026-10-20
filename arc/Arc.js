@@ -29,6 +29,15 @@ text(content, options = {}) {
         element.style.letterSpacing = "-0.02em";
         element.style.lineHeight = "1.3";
     }
+    if (options.variant === "link") {
+        element.style.fontSize = "1rem";
+        element.style.fontWeight = "400";
+        element.style.letterSpacing = "-0.01em";
+        element.style.lineHeight = "1.5";
+        element.style.color = "#007BFF";
+        element.style.textDecoration = "none";
+        element.href = options.href || "#";
+    }
 
     return {
         element,
