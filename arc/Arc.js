@@ -4,6 +4,7 @@ import Image from "./components/Image.js";
 import Page from "./components/Page.js";
 import Meta from "./core/Meta.js";
 import PageLoader from "./core/PageLoader.js";
+import Style from "./core/Style.js";
 
 const Arc = {
 Component,
@@ -11,6 +12,7 @@ Text,
 Image,
 Page,
 Meta,
+Style,
 
 text(content, options = {}) {
     const element = document.createElement(options.tag || "p");
