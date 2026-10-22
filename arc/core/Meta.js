@@ -2,12 +2,13 @@
 // there is one, so they can be called again (e.g. when the page changes) without
 // creating duplicates.
 const Meta = {
-    // Sets any of the title, description, keywords and favicon. Anything left out stays as it is.
-    set({ title, description, keywords, favicon } = {}) {
+    // Sets any of the title, description, keywords, favicon and author. Anything left out stays as it is.
+    set({ title, description, keywords, favicon, author } = {}) {
         if (title) this.setTitle(title);
         if (description) this.setDescription(description);
         if (keywords) this.setKeywords(keywords);
         if (favicon) this.setFavicon(favicon);
+        if (author) this.setAuthor(author);
     },
 
     setTitle(title) {
@@ -20,6 +21,10 @@ const Meta = {
 
     setKeywords(keywords) {
         this.setTag("keywords", keywords);
+    },
+
+    setAuthor(author) {
+        this.setTag("author", author);
     },
 
     setFavicon(path) {

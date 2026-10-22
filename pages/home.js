@@ -36,6 +36,8 @@ const features = [
 export default class Home extends Arc.Page {
     static title = "Arc Framework";
     static description = "A framework for building single page web applications.";
+    static keywords = "arc, framework, javascript, web, applications";
+    static author = "Daniel Rea";
     static styles = ["./styles/home.css"];
 
     content() {
