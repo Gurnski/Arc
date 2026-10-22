@@ -1,4 +1,4 @@
-import Component from "../../Component.js";
+import Component from "./Component.js";
 import Style from "../../../core/Style.js";
 
 // Loaded once, the first time anything imports the hero. PageLoader waits for it before showing a page.

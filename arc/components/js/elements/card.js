@@ -1,6 +1,6 @@
-import Component from "../../Component.js";
+import Component from "./Component.js";
 import Style from "../../../core/Style.js";
-import Icon from "../../Icon.js";
+import Icon from "./Icon.js";
 
 // Loaded once, the first time anything imports the card. PageLoader waits for it before showing a page.
 Style.load(new URL("../../css/elements/card.css", import.meta.url).href);

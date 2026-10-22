@@ -1,5 +1,5 @@
 import Component from "./Component.js";
-import PageLoader from "../core/PageLoader.js";
+import PageLoader from "../../../core/PageLoader.js";
 
 // A button, or a link that looks like one.
 //

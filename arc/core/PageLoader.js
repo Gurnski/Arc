@@ -1,6 +1,6 @@
 import Meta from "./Meta.js";
 import Style from "./Style.js";
-import Page from "../components/Page.js";
+import Page from "../components/js/elements/Page.js";
 
 // Loads pages from the site's pages/ folder and swaps them into the root element
 // without reloading the browser, along with their stylesheets.

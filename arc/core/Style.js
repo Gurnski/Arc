@@ -1,4 +1,4 @@
-import Component from "../components/Component.js";
+import Component from "../components/js/elements/Component.js";
 
 // Adds and removes the site's <link rel="stylesheet"> tags. PageLoader uses it to bring in
 // the site's and each page's styles, and components use it to load their own.
