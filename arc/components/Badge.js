@@ -1,6 +1,6 @@
 import Component from "./Component.js";
 
-// A small pill-shaped label, e.g. "v0.1" or "New".
+// A small pill-shaped label
 export default class Badge extends Component {
     constructor(text, options = {}) {
         super(options);
