@@ -47,6 +47,7 @@ export default class Home extends Arc.Page {
                 scrollHint: "Scroll",
                 children: [
                     new Arc.Orbit({
+                        id: "#top",
                         center: new Arc.Image("./logo.png", { alt: "Arc"}),
                         items: [
                             new Arc.Image("./assets/javascript.svg", { alt: "JavaScript" }),
@@ -54,7 +55,6 @@ export default class Home extends Arc.Page {
                             new Arc.Image("./assets/css.svg", { alt: "CSS" })
                         ]
                     }),
-                    //new Arc.Badge("v0.1 · Plain HTML, CSS and JavaScript"),
                     new Arc.Text("A whole site in one page", { tag: "h1", variant: "title", highlight: "one page" }),
                     new Arc.Text("Arc is a lightweight JavaScript framework that loads pages, their styles and their content in place, without ever reloading the browser.", {
                         variant: "subtitle"
