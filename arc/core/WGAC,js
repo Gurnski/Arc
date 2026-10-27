@@ -1,5 +1,11 @@
 // This file checks the site to ensure that the site conforms to WGAC standards.
 
+export default class WGAC {
+    static Arc = {
+        checkAccessibility: checkAccessibility
+    };
+}
+
 function checkAccessibility() {
     const issues = [];
 
@@ -70,11 +76,7 @@ function checkAccessibility() {
         if (!role) {
             issues.push(`Element "${element.tagName}" is missing a role attribute for screen reader compatibility.`);
         }
-    });
-
-
-    
-    
+    });    
 
     return issues;
 };
