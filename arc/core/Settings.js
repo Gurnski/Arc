@@ -1,4 +1,4 @@
-const testJson = {
+const settings = {
     "name": "Arc Framework",
     "version": "0.1",
     "description": "A framework for building single page web applications.",
@@ -8,8 +8,8 @@ const testJson = {
     }
 };
 
-console.log("Test JSON:", testJson);
-saveJsonToFile(testJson, "test.json");
+console.log("JSON:", settings);
+saveJsonToFile(settings, "settings.json");
 
 function saveJsonToFile(jsonData, filename) {
     const jsonString = JSON.stringify(jsonData, null, 2); // Convert JSON to string with indentation

@@ -1,0 +1,9 @@
+{
+  "name": "Arc Framework",
+  "version": "0.1",
+  "description": "A framework for building single page web applications.",
+  "settings": {
+    "theme": "light",
+    "language": "en"
+  }
+}
