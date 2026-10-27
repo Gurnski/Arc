@@ -22,9 +22,11 @@ export default class About extends Arc.Page {
                     children: [
                                 new Arc.Card({
                                     title: "What is Arc?",
-                               }),
+                                    variant: "outlined",
+                                    justify: "center",
+                                }),
 
-                               new Arc.Stack({
+                               new Arc.Grid({
                                 tag: "info",
                                 variant: "outlined",
                                 gap: "xl",

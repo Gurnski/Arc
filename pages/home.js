@@ -54,7 +54,7 @@ export default class Home extends Arc.Page {
                             new Arc.Image("./assets/css.svg", { alt: "CSS" })
                         ]
                     }),
-                    new Arc.Badge("v0.1 · Plain HTML, CSS and JavaScript"),
+                    //new Arc.Badge("v0.1 · Plain HTML, CSS and JavaScript"),
                     new Arc.Text("A whole site in one page", { tag: "h1", variant: "title", highlight: "one page" }),
                     new Arc.Text("Arc is a lightweight JavaScript framework that loads pages, their styles and their content in place, without ever reloading the browser.", {
                         variant: "subtitle"
@@ -81,7 +81,7 @@ export default class Home extends Arc.Page {
                             tag: "header",
                             className: "home-features-heading",
                             children: [
-                                new Arc.Badge("Features"),
+                                //new Arc.Badge("Features"),
                                 new Arc.Text("Everything a page needs, loaded in place", { tag: "h2" }),
                                 new Arc.Text("Move between pages like a normal website, while Arc quietly swaps the content, styles and details behind the scenes.", {
                                     className: "arc-muted"
