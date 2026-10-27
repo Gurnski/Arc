@@ -1,0 +1,80 @@
+// This file checks the site to ensure that the site conforms to WGAC standards.
+
+function checkAccessibility() {
+    const issues = [];
+
+    // Check for missing alt attributes on images
+    const images = document.querySelectorAll("img");
+    images.forEach((img) => {
+        if (!img.hasAttribute("alt") || img.getAttribute("alt").trim() === "") {
+            issues.push(`Image with src "${img.src}" is missing an alt attribute.`);
+        }
+    });
+
+    // Check for missing labels on form elements
+    const formElements = document.querySelectorAll("input, select, textarea");
+    formElements.forEach((element) => {
+        if (!element.hasAttribute("id")) {
+            issues.push(`Form element is missing an id attribute.`);
+        }
+    });
+
+    // Check for sufficient color contrast (Level AAA requires a contrast ratio of at least 7:1 for normal text and 4.5:1 for large text)
+    const elements = document.querySelectorAll("*");
+    elements.forEach((element) => {
+        const style = window.getComputedStyle(element);
+        const color = style.color;
+        const backgroundColor = style.backgroundColor;
+        if (color && backgroundColor) {
+            const contrastRatio = this.getContrastRatio(color, backgroundColor);
+            if (contrastRatio < 7) {
+                issues.push(`Element "${element.tagName}" has insufficient color contrast: ${contrastRatio.toFixed(2)}.`);
+            }
+        }
+    });
+
+    // Check for text size and scaling
+    elements.forEach((element) => {
+        const style = window.getComputedStyle(element);
+        const fontSize = parseFloat(style.fontSize);
+        if (fontSize < 12) {
+            issues.push(`Element "${element.tagName}" has a font size of ${fontSize}px, which may be too small for readability.`);
+        }
+        if (fontSize > 24) {
+            issues.push(`Element "${element.tagName}" has a font size of ${fontSize}px, which may be too large for readability.`);
+        }
+    });
+
+    // Check for keyboard accessibility
+
+    const focusableElements = document.querySelectorAll("a, button, input, select, textarea, [tabindex]");
+    focusableElements.forEach((element) => {
+        if (!element.hasAttribute("tabindex")) {
+            issues.push(`Element "${element.tagName}" is missing a tabindex attribute for keyboard accessibility.`);
+        }
+    });
+
+    // Check ARIA Labels
+    const ariaElements = document.querySelectorAll("[aria-label], [aria-labelledby]");
+    ariaElements.forEach((element) => {
+        if (!element.hasAttribute("aria-label") && !element.hasAttribute("aria-labelledby")) {
+            issues.push(`Element "${element.tagName}" is missing an ARIA label for accessibility.`);
+        }
+    });
+
+    // Screen Reader Compatibility
+    const screenReaderElements = document.querySelectorAll("[role]");
+
+    screenReaderElements.forEach((element) => {
+        const role = element.getAttribute("role");
+        if (!role) {
+            issues.push(`Element "${element.tagName}" is missing a role attribute for screen reader compatibility.`);
+        }
+    });
+
+
+    
+    
+
+    return issues;
+};
