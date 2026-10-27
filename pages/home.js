@@ -47,7 +47,7 @@ export default class Home extends Arc.Page {
                 scrollHint: "Scroll",
                 children: [
                     new Arc.Orbit({
-                        center: new Arc.Image("./logo.png", { alt: "Arc" }),
+                        center: new Arc.Image("./logo.png", { alt: "Arc"}),
                         items: [
                             new Arc.Image("./assets/javascript.svg", { alt: "JavaScript" }),
                             new Arc.Image("./assets/html.svg", { alt: "HTML" }),
@@ -92,6 +92,41 @@ export default class Home extends Arc.Page {
                             min: "300px",
                             children: features.map((feature) => new Arc.Card(feature))
                         })
+                    ]
+                })
+            }),
+
+            // Third screen: get started
+            new Arc.Section({
+                id: "get-started",
+                variant: "raised",
+                children: new Arc.Stack({
+                    gap: "xl",
+                    children: [
+                        new Arc.Stack({
+                            tag: "header",
+                            children: [
+                                new Arc.Text("Get Started", { tag: "h2" }),
+                                new Arc.Text("Ready to dive in? Here's how to get started with Arc.", {
+                                    className: "arc-muted"
+                                })
+                            ]
+                        })
+                    ]
+                })  
+            }),
+
+            new Arc.Footer({
+                id: "arc-footer",
+                variant: "raised",
+                children: new Arc.Stack({
+                    gap: "xl",
+                    children: [
+                        new Arc.Text("Arc.js", { tag: "h2" }),
+                        new Arc.Text("By Daniel Rea", {
+                            className: "arc-muted"
+                        }),
+                        new Arc.Button({ text: "Back to top", href: "#top" })
                     ]
                 })
             })

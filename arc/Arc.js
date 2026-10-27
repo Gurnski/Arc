@@ -13,6 +13,7 @@ import Style from "./core/Style.js";
 import Orbit from "./components/js/elements/Orbit.js";
 import Card from "./components/js/elements/Card.js";
 import Hero from "./components/js/elements/Hero.js";
+import Footer from "./components/js/elements/Footer.js";
 //import WGAC from "./core/WGAC.js";
 
 const Arc = {
@@ -33,6 +34,7 @@ Style,
 Orbit,
 Card,
 Hero,
+Footer,
 //WGAC,
 
 // Creates a text element with the given content and options, and returns an object with the element and a mount() method.

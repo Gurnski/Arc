@@ -1,0 +1,12 @@
+/* Styles for Arc.Footer. footer.js sets --cover from 0 (fully visible) to 1 (covered). */
+.arc-footer {
+  max-height: 30vh;
+  max-height: 30dvh;
+  display: grid;
+  /* Content centred in the space above, scroll hint underneath it */
+  grid-template-rows: 1fr auto;
+  place-items: center;
+  gap: var(--arc-space-l, 1.5rem);
+  padding-block: var(--arc-space-xl, 2.5rem) var(--arc-space-l, 1.5rem);
+  overflow: hidden;
+}
