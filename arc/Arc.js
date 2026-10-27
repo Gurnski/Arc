@@ -13,7 +13,7 @@ import Style from "./core/Style.js";
 import Orbit from "./components/js/elements/Orbit.js";
 import Card from "./components/js/elements/Card.js";
 import Hero from "./components/js/elements/Hero.js";
-import WGAC from "./core/WGAC.js";
+//import WGAC from "./core/WGAC.js";
 
 const Arc = {
 Component,
@@ -33,7 +33,7 @@ Style,
 Orbit,
 Card,
 Hero,
-WGAC,
+//WGAC,
 
 // Creates a text element with the given content and options, and returns an object with the element and a mount() method.
 text(content, options = {}) {
@@ -85,17 +85,17 @@ loadPage(name) {
 // styles are the stylesheets every page shares.
 init({ root = "#app", pages = "./pages/", styles = [] } = {}) {
 
-    developerMode = true;
+ /*   const developerMode = true;
 
     if (developerMode) {
         console.log("[INFO] Developer mode is ON. Arc will log extra information to the console.");
 
         console.log("[INFO] Checking accessibility...");
 
-        WGAC.Arc.checkAccessibility();
+       WGAC.Arc.checkAccessibility();
 
     
-    }
+    }*/
 
     try
     {
