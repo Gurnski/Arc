@@ -48,7 +48,7 @@ export default class Home extends Arc.Page {
                 children: [
                     new Arc.Orbit({
                         id: "#top",
-                        center: new Arc.Image("./logo.png", { alt: "Arc"}),
+                        center: new Arc.Image("./logo.png", { alt: "Arc" }),
                         items: [
                             new Arc.Image("./assets/javascript.svg", { alt: "JavaScript" }),
                             new Arc.Image("./assets/html.svg", { alt: "HTML" }),
@@ -110,10 +110,19 @@ export default class Home extends Arc.Page {
                                 new Arc.Text("Ready to dive in? Here's how to get started with Arc.", {
                                     className: "arc-muted"
                                 })
+
+                                new Arc.FlexCard({
+                                    title: "Download Arc",
+                                    text: "Get the latest version of Arc from GitHub.",
+                                    icon: "download",
+                                    background: "linear-gradient(135deg, #4CAF50, #81C784)",
+                                    type: "large",
+                                    href: "https://github.com/danielrea/arc"
+                                })
                             ]
                         })
                     ]
-                })  
+                })
             }),
 
             new Arc.Footer({

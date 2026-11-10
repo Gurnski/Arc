@@ -4,6 +4,7 @@ import Component from "./Component.js";
 // extends this one, sets its title and description, and lists its components in content().
 // Arc.loadPage() handles importing it, loading its styles, swapping it into the page and
 // updating the meta tags.
+
 export default class Page extends Component {
     static title = "";
     static description = "";
